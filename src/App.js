@@ -1,12 +1,17 @@
 import React from "react";
+import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header"
-import routes from "./config/routes";
+import Home from "./pages/Home";
+import TodoPage from "./pages/TodoPage";
 
-function App() {
+const App = () => {
   return (
     <div className="container">
       <Header />
-      { routes }
+      <Routes>
+        <Route exact path={"/"} element={<Home />}/>
+        <Route path={"/todos"} element={<TodoPage />}/>
+      </Routes>
     </div>
   );
 };
