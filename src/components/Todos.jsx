@@ -7,6 +7,8 @@ const Todos = (props) => {
         return <Todo
                 key={index}
                 todo={todo}
+                handleCreateTodo={props.handleCreateTodo}
+                handleUpdateTodo={props.handleUpdateTodo}
               />
       })}
     </div>

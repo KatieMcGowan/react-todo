@@ -36,13 +36,23 @@ const TodoPage = () => {
       todos: newTodos,
       update: true,
     });
-  };  
+  };
+  
+  const handleUpdateTodo = (todo) => {
+    let updatedTodos = state.todos;
+    updatedTodos.push(todo);
+    setState({
+      todos: updatedTodos,
+      update: true,
+    });
+  };
 
   return(
     <div className="todospage">
       <h1>Your To-Do's</h1>
         <Todos 
           todos={state.todos}
+          handleUpdateTodo={handleUpdateTodo}
         /> 
         <CreateToDoForm
           handleCreateToDo={handleCreateToDo}
