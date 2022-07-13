@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 
 const CreateToDoForm = (props) => {
+
   const [todo, setTodo] = useState({
     body: "",
     completed: false,
+    key: 0
   });
 
   const handleInputChange = (event) => {
+    console.log(props)
     setTodo({
       body: event.target.value,
       completed: false,
@@ -16,9 +19,11 @@ const CreateToDoForm = (props) => {
     const handleFormSubmit = (event) => {
       event.preventDefault();
       props.handleCreateToDo(todo);
+      let key = props.todos.length + 1;
       setTodo({
         body: "",
         completed: false,
+        key: key,
       });
     };
 

@@ -1,18 +1,22 @@
 import React, { useState } from "react";
 
 const UpdateToDoForm = (props) => {
-
-  const [todo, setTodo] = useState("");
+  const [todo, setTodo] = useState({
+    body: "",
+    completed: false,
+  });
 
   const handleInputChange = (event) => {
-    setTodo(event.target.value)
+    setTodo({
+      body: event.target.value,
+      completed: false,
+      key: props.todo.key,
+    });
   };
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    const updatedTodo = props.todo.todo;
-    updatedTodo.body = todo;
-    props.handleUpdateTodo(updatedTodo);
+    props.handleUpdateTodo(todo);
     props.toggleBodyForm();
   }
 
@@ -23,7 +27,7 @@ const UpdateToDoForm = (props) => {
           autoFocus={props.autoFocus}
           onChange={handleInputChange}
           placeholder="Update your To-Do"
-          value={todo}
+          value={todo.body}
         />
         <button type="submit">Save</button>  
       </form>

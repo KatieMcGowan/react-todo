@@ -3,12 +3,13 @@ import Todo from "./Todo";
 const Todos = (props) => {
   return(
     <div className="todos">
-      {props.todos.map((todo, index) => {
+      {props.todos.map((todo) => {
         return <Todo
-                key={index}
+                key={todo.key}
                 todo={todo}
                 handleCreateTodo={props.handleCreateTodo}
                 handleUpdateTodo={props.handleUpdateTodo}
+                handleDeleteTodo={props.handleDeleteTodo}
               />
       })}
     </div>

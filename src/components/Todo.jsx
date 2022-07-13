@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import UpdateToDoForm from "./UpdateTodoForm";
 
 const Todo = (props) => {
-
   const [state, setState] = useState({
     formStyle: {
       display: "none"
@@ -16,19 +15,20 @@ const Todo = (props) => {
   };
 
   return(
-    <div className="todo">
-      <li>{props.todo.body}</li>
+    <li className="todo">
+      {props.todo.body}
         <div>
-          <span className="edit" onClick={handleToggleBodyForm}>Edit</span>
+          <span className="edit" onClick={() => handleToggleBodyForm}>Edit</span>
+          <span className="remove" onClick={() => props.handleDeleteTodo(props.todo)}>Remove</span>
         </div>
       <UpdateToDoForm
-        todo={props}
+        todo={props.todo}
         autoFocus={true}
         buttonName="Update To-Do"
         handleUpdateTodo={props.handleUpdateTodo}
         toggleBodyForm={handleToggleBodyForm}
       />  
-    </div>
+    </li>
   );
 };
 

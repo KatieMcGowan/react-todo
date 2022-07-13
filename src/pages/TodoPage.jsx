@@ -8,22 +8,27 @@ const TodoPage = () => {
       {
         body: "Water the plants",
         completed: false,
+        key: 1
       },
       {
         body: "Refactor code",
         completed: false,
+        key: 2
       },
       {
         body: "Buy supplies for screen door",
         completed: false,
+        key: 3
       },
       {
         body: "Make dinner",
         completed: false,
+        key: 4
       },
       {
         body: "Make weekend plans",
         completed: false,
+        key: 5
       }
     ],
     update: true
@@ -39,10 +44,27 @@ const TodoPage = () => {
   };
   
   const handleUpdateTodo = (todo) => {
-    let updatedTodos = state.todos;
-    updatedTodos.push(todo);
+    let updatedTodos = state.todos
+    for (let i = 0; i < updatedTodos.length; i++) {
+      if (todo.key === updatedTodos[i].key) {
+        updatedTodos.splice(i, 1, todo)
+      };
+    };
     setState({
       todos: updatedTodos,
+      update: true,
+    });
+  };
+  
+  const handleDeleteTodo = (todo) => {
+    let deletedTodos = state.todos;
+    for (let i = 0; i < deletedTodos.length; i++) {
+      if (todo === deletedTodos[i]) {
+        deletedTodos.splice(i, 1)
+      };
+    };
+    setState({
+      todos: deletedTodos,
       update: true,
     });
   };
@@ -53,8 +75,10 @@ const TodoPage = () => {
         <Todos 
           todos={state.todos}
           handleUpdateTodo={handleUpdateTodo}
+          handleDeleteTodo={handleDeleteTodo}
         /> 
         <CreateToDoForm
+          todos={state.todos}
           handleCreateToDo={handleCreateToDo}
         />  
     </div>
